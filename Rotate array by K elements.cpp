@@ -15,9 +15,17 @@ public:
 //             temp[0] = nums[size-1];
 //         }
 //         cnt++;
+
+        //For Right Rotate
         k=k%nums.size();
          reverse(nums.begin(), nums.end());
         reverse(nums.begin(), nums.begin()+k);
         reverse(nums.begin()+k, nums.end());
+
+        //For Left Rotate 
+    // reverse(arr.begin(),arr.begin()+d);  //Complete Reverse
+    // reverse(arr.begin()+d,arr.end());
+    // reverse(arr.begin(),arr.end());
+    // return arr; 
     }     
 };
