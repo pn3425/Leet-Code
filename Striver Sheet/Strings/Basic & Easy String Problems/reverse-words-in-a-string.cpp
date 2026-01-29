@@ -1,6 +1,7 @@
 class Solution {
 public:
-    // Brute Force : TC -> O(n) & SC -> O(1), Using Vector List
+//-----------------------Brute Force : TC -> O(n) & SC -> O(1), Using Vector List-----------------------------
+    /*
     string reverseWords(string s) {
 
      vector<string> words;  // Declare a vector to store
@@ -30,5 +31,46 @@ public:
         }
       }
        return result; 
-    }
+    } */
+
+// -------------------------------------- OPTIMAL : TC -> O(N), SC -> O(1)-------------------------------
+/*
+Initialize an empty result string.
+Set a pointer at the last character of the string.
+While the pointer is within the string:
+Skip all spaces to move to the end of a word.
+Mark the end position of the word.
+Move the pointer backward until a space or start of string is found.
+Extract the word and append it to the result string.
+If result is not empty, add a space before appending the next word.
+*/
+
+     string reverseWords(string s) {
+        string result = "";
+        int i = s.size()-1;
+        while(i >= 0){
+
+             while( i >= 0 && s[i] == ' '){
+                i--;
+            }
+
+            if(i<0) break;
+
+            int end = i;
+
+            while( i >= 0 && s[i] != ' '){
+                i--;
+            }
+
+            string word = s.substr(i+1,end-i);
+
+            if(!result.empty()){
+                result += " ";
+            }
+
+            result += word;
+        }
+    return result;
+
+     }
 };
