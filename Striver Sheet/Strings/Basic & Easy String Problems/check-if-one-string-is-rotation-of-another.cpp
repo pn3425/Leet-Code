@@ -13,10 +13,15 @@ public:
     }
 }; */
 
-// Optimal 
+// Optimal -> O(n)
+
 class Solution {
 public:
     bool rotateString(string s, string goal) {
-     
+        if(s.length() != goal.length()){
+            return false;
+        }
+        string doubledS = s + s; // Combining the word
+        return doubledS.find(goal) != string::npos; // Find the goal in doubled string, if found return true else false (find.goal() -> returns the index, if didnt find returns string.npos)
     }
 };
