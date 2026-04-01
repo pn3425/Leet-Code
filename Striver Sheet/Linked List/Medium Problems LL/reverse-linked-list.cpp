@@ -36,18 +36,37 @@
  
 //------------- OPTIMAL -> TC -> O(N), SC -> O(1) (NO EXTRA SPACE, NO STACK) (only changing links) ------------------
 
+// class Solution {
+// public:
+//     ListNode* reverseList(ListNode* head) {
+//         ListNode* temp = head;
+//         ListNode* prev = nullptr;
+
+//         while(temp != NULL){
+//             ListNode* front = temp -> next;
+//             temp -> next = prev;
+//             prev = temp;
+//             temp = front;
+//         }
+//         return prev;
+//     }
+// };
+
+// ---------------------- Recrsive Approach --------------------------------------------------------------
+
+//Solve for 1 node, 2 node, 3 node and basically breakdown LL into smaller tasks for recursive app
+
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ListNode* temp = head;
-        ListNode* prev = nullptr;
+        if(head == NULL || head -> next == NULL){   //Handeled for one node
+            return head;  
+        } 
 
-        while(temp != NULL){
-            ListNode* front = temp -> next;
-            temp -> next = prev;
-            prev = temp;
-            temp = front;
-        }
-        return prev;
+        ListNode* newhead = reverseList(head -> next); //Pass the next one
+        ListNode* front = head -> next; //Assign the front
+        front -> next = head; // Set connections to back
+        head -> next = nullptr;  //Set head to nullptr
+        return newhead;
     }
 };
